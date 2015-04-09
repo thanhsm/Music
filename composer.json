@@ -1,6 +1,9 @@
 {
     "name": "thanhsm/music",
     "description": "Music API",
+    "keyword" : [
+        "api", "music api", "zing mp3", "mp3", "zing"
+    ],
     "license": "MIT",
     "authors": [
         {
