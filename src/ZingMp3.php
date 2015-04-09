@@ -57,8 +57,8 @@ class ZingMp3
                 'artist' => $song['artist'],
                 'genre' => $song['genre'],
                 'link' => $this->getLink() . $song['link'],
-                'link_download' => $song['link_download'],
-                'source' => $song['source'],
+                'link_download' => (array)$song['link_download'],
+                'source' => (array)$song['source'],
                 'lyrics_file' => $song['lyrics_file'],
             ]);
         }
