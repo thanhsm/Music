@@ -4,7 +4,7 @@ namespace Music;
 
 class Music
 {
-    public static $providers = [
+    private static $providers = [
         'zing',
     ];
 

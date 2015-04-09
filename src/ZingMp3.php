@@ -37,10 +37,11 @@ class ZingMp3
 
     protected function process($data)
     {
+        $songArray = array();
         foreach ($data as $songObject) {
             $songArray[] = (array)$songObject;
         }
-        $songData = [];
+        $songData = array();
         foreach ($songArray as $index => $song) {
             if ($song['username'] != 'mp3') {
                 continue;
@@ -51,7 +52,7 @@ class ZingMp3
                 'bitrate' => $song['bitrate'],
                 'duration' => gmdate('i:s', $song['duration']),
                 'total_play' => number_format($song['total_play'], 0, ',', $this->separator),
-                'title' => $song['title'],
+                'name' => $song['title'],
                 'artist' => $song['artist'],
                 'genre' => $song['genre'],
                 'link_download' => $song['link_download'],

@@ -13,27 +13,24 @@ class Song
 {
     private $data = array();
 
-    public function __construct()
+    public function __construct($data = array())
     {
-        $data = func_get_args();
         if (is_array($data)) {
             foreach ($data as $key => $value) {
                 $this->data[$key] = $value;
             }
-        } else {
-            $this->data[] = $data;
         }
     }
 
-    public function __set($name, $value)
+    public function __set($key, $value)
     {
-        $this->data[$name] = $value;
+        $this->data[$key] = $value;
     }
 
-    public function __get($name)
+    public function __get($key)
     {
-        if (array_key_exists($name, $this->data)) {
-            return $this->data[$name];
+        if (array_key_exists($key, $this->data)) {
+            return $this->data[$key];
         }
         return null;
     }
