@@ -42,12 +42,9 @@ class ZingMp3
         foreach ($data as $songObject) {
             $songArray[] = (array)$songObject;
         }
-        $songData = array();
+        $songs = array();
         foreach ($songArray as $index => $song) {
-            if ($song['username'] != 'mp3') {
-                continue;
-            }
-            $songData[$index] = new Song([
+            $songs[$index] = new Song([
                 'origin_id' => $song['song_id'],
                 'id' => pathinfo($song['link'], PATHINFO_FILENAME),
                 'bitrate' => $song['bitrate'],
@@ -62,7 +59,7 @@ class ZingMp3
                 'lyrics_file' => $song['lyrics_file'],
             ]);
         }
-        return $songData;
+        return $songs;
     }
 
     /**
