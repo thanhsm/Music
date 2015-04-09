@@ -13,6 +13,7 @@ class ZingMp3
 {
 
     private $url = 'http://api.mp3.zing.vn/api/mobile/search/song';
+    private $link = 'http://mp3.zing.vn';
     private $separator = ',';
 
     public function __construct($url = null)
@@ -22,7 +23,7 @@ class ZingMp3
         }
     }
 
-    public function get($song = null)
+    public function search($song = null)
     {
         $data = [
             'requestdata' => json_encode(['q' => $song, 'sort' => 'hot'])
@@ -30,7 +31,7 @@ class ZingMp3
         $callAPI = call_api('get', $this->url, $data);
         $dataReceived = json_decode($callAPI);
         if ($dataReceived) {
-            $result = $this->process($dataReceived);
+            $result = $this->process($dataReceived->docs);
         }
         return isset($result) ? $result : array();
     }
@@ -55,6 +56,7 @@ class ZingMp3
                 'name' => $song['title'],
                 'artist' => $song['artist'],
                 'genre' => $song['genre'],
+                'link' => $this->getLink() . $song['link'],
                 'link_download' => $song['link_download'],
                 'source' => $song['source'],
                 'lyrics_file' => $song['lyrics_file'],
@@ -93,6 +95,22 @@ class ZingMp3
     public function setSeparator($separator)
     {
         $this->separator = $separator;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+    /**
+     * @param string $link
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
     }
 
 }
